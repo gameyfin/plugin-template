@@ -11,7 +11,11 @@ import org.slf4j.LoggerFactory
 
 class HelloWorldPlugin(wrapper: PluginWrapper) : ConfigurableGameyfinPlugin(wrapper) {
 
-
+    /**
+     * This is the configuration metadata for the plugin.
+     * It defines the configuration keys, names, descriptions, and whether they are secret (which only changes how they are displayed in the UI).
+     * By default, all configuration options are stored encrypted in the Gameyfin database.
+     */
     override val configMetadata: List<PluginConfigElement> = listOf(
         PluginConfigElement(
             key = "exampleKey",
@@ -20,8 +24,19 @@ class HelloWorldPlugin(wrapper: PluginWrapper) : ConfigurableGameyfinPlugin(wrap
         )
     )
 
+    /**
+     * This is an example of how to validate the plugin configuration.
+     * You can implement this method to check if the provided configuration is valid.
+     * In this example, we only check if the "exampleKey" is not empty.
+     */
     override fun validateConfig(config: Map<String, String?>): PluginConfigValidationResult {
-        TODO("Not yet implemented")
+        return config["exampleKey"]?.let {
+            if (it.isNotBlank()) {
+                PluginConfigValidationResult.VALID
+            } else {
+                PluginConfigValidationResult.INVALID(mapOf("exampleKey" to "This field cannot be empty"))
+            }
+        } ?: PluginConfigValidationResult.INVALID(mapOf("exampleKey" to "This field is required"))
     }
 
     /**
