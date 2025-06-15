@@ -5,7 +5,7 @@ plugins {
     id("com.google.devtools.ksp") version "2.1.21-2.0.1" // match with your Kotlin version
 }
 
-group = "de.grimsi.gameyfinplugins"
+group = "org.gameyfin.plugins"
 
 // Read the version from the MANIFEST.MF file in resources
 val manifestFile = file("src/main/resources/MANIFEST.MF")

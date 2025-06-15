@@ -1,6 +1,6 @@
 Plugin-Version: 1.0.0
-Plugin-Class: de.grimsi.gameyfinplugins.TutorialPlugin
-Plugin-Id: de.grimsi.gameyfinplugins.helloworld
+Plugin-Class: org.gameyfin.plugins.TutorialPlugin
+Plugin-Id: org.gameyfin.plugins.helloworld
 Plugin-Name: Gameyfin Example Plugin
 Plugin-Description: Demonstrates how to implement a simple game metadata plugin.<br>
  Always returns a hardcoded game with the name "Hello World" and the original ID "hello-world-game".

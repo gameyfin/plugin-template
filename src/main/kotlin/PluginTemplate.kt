@@ -1,4 +1,4 @@
-package org.gameyfin.gameyfinplugins
+package org.gameyfin.plugins
 
 import org.gameyfin.pluginapi.core.config.ConfigMetadata
 import org.gameyfin.pluginapi.core.config.PluginConfigMetadata
