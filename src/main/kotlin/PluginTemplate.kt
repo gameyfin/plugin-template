@@ -1,11 +1,11 @@
-package de.grimsi.gameyfinplugins
+package org.gameyfin.gameyfinplugins
 
-import de.grimsi.gameyfin.pluginapi.core.config.ConfigMetadata
-import de.grimsi.gameyfin.pluginapi.core.config.PluginConfigMetadata
-import de.grimsi.gameyfin.pluginapi.core.config.PluginConfigValidationResult
-import de.grimsi.gameyfin.pluginapi.core.wrapper.ConfigurableGameyfinPlugin
-import de.grimsi.gameyfin.pluginapi.gamemetadata.GameMetadata
-import de.grimsi.gameyfin.pluginapi.gamemetadata.GameMetadataProvider
+import org.gameyfin.pluginapi.core.config.ConfigMetadata
+import org.gameyfin.pluginapi.core.config.PluginConfigMetadata
+import org.gameyfin.pluginapi.core.config.PluginConfigValidationResult
+import org.gameyfin.pluginapi.core.wrapper.ConfigurableGameyfinPlugin
+import org.gameyfin.pluginapi.gamemetadata.GameMetadata
+import org.gameyfin.pluginapi.gamemetadata.GameMetadataProvider
 import org.pf4j.Extension
 import org.pf4j.PluginWrapper
 import org.slf4j.LoggerFactory
@@ -135,13 +135,14 @@ class PluginTemplate(wrapper: PluginWrapper) : ConfigurableGameyfinPlugin(wrappe
          * - features: A list of features the game has.
          * - perspectives: A list of perspectives the game can be played from.
          *
-         * @param gameId This is the name of a file or folder that Gameyfin found in a game library.
+         * @param gameTitle This is the name of a file or folder that Gameyfin found in a game library.
          * @param maxResults The maximum number of results to return. You can return fewer results if you want.
+         * @return A list of GameMetadata objects containing the metadata of the game(s) that match the gameId.
          */
-        override fun fetchMetadata(gameId: String, maxResults: Int): List<GameMetadata> {
+        override fun fetchByTitle(gameTitle: String, maxResults: Int): List<GameMetadata> {
 
             // Log the gameId and maxResults for debugging purposes.
-            log.debug("HelloWorldMetadataProvider: Fetching metadata for gameId: {} with maxResults: {}", gameId, maxResults)
+            log.debug("HelloWorldMetadataProvider: Fetching metadata for gameId: {} with maxResults: {}", gameTitle, maxResults)
 
             // For demonstration purposes, we will return a hardcoded example result.
             val exampleResult = GameMetadata(
@@ -151,6 +152,23 @@ class PluginTemplate(wrapper: PluginWrapper) : ConfigurableGameyfinPlugin(wrappe
 
             // Return a list containing the example result.
             return listOf(exampleResult)
+        }
+
+        /**
+         * Implement this method to provide game metadata by its unique identifier.
+         *
+         * The method receives an "id" which is usually the unique identifier of a video game from your data source.
+         * The task of your plugin is to match this id to a video game and return metadata about it.
+         * If you could not find any matches, return null.
+         *
+         * @param id The unique identifier of the game in the source your plugin implements.
+         * @return A GameMetadata object containing the metadata of the game, or null if no match was found.
+         */
+        override fun fetchById(id: String): GameMetadata? {
+            return GameMetadata(
+                title = "Hello World Game",
+                originalId = id
+            )
         }
     }
 }

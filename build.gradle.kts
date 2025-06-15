@@ -21,7 +21,7 @@ repositories {
 
 dependencies {
     ksp("care.better.pf4j:pf4j-kotlin-symbol-processing:2.1.21-1.0.2") // match with your Kotlin version
-    compileOnly("de.grimsi.gameyfin:plugin-api:2.0.0-SNAPSHOT") // match with your Gameyfin version
+    compileOnly("org.gameyfin:plugin-api:2.0.0.beta1") // match with your Gameyfin version
 }
 
 tasks.jar {
